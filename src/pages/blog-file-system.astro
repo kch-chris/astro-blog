@@ -1,11 +1,14 @@
 ---
-
-import { getCollection } from "astro:content";
+import BlogPost from "../components/BlogPost.astro";
 import { siteConfig } from "../config/site-config";
 import MainLayout from "../layouts/MainLayout.astro";
-import TypedBlogPost from "@/components/TypedBlogPost.astro";
 
-const blogPosts = await getCollection('blog');
+interface CustomDataFile {
+  default: Record<string, any>;
+}
+
+const matches = import.meta.glob<CustomDataFile>('./posts-old/*.{md,mdx}', { eager: true });
+const posts = Object.values(matches);
 ---
 
 <MainLayout title="Kch's Blog">
@@ -16,8 +19,9 @@ const blogPosts = await getCollection('blog');
 
         <div class="grid grid-cols-1 gap-8 mt-8 md:mt-16 md:grid-cols-2">
             {
-                blogPosts.map((post) => <TypedBlogPost post={post} />)
+                posts.map((post) => <BlogPost {...post} />)
             }
+            
             
         </div>
     </div>
