@@ -5,7 +5,7 @@ import { siteConfig } from "../config/site-config";
 import MainLayout from "../layouts/MainLayout.astro";
 import TypedBlogPost from "@/components/TypedBlogPost.astro";
 
-const blogPosts = await getCollection('blog');
+const blogPosts = await getCollection('blog', (post) => post.data.isDraft === false);
 ---
 
 <MainLayout title="Kch's Blog">
@@ -14,6 +14,8 @@ const blogPosts = await getCollection('blog');
     <div class="container px-6 py-10 mx-auto">
         <h1 class="text-3xl font-semibold  capitalize lg:text-4xl text-white">{ siteConfig.title}</h1>
 
+        <a class="mr-2" href="/blog/1"> Blog paginado</a>
+        <a class="mr-2" href="/authors">Autores</a>
         <div class="grid grid-cols-1 gap-8 mt-8 md:mt-16 md:grid-cols-2">
             {
                 blogPosts.map((post) => <TypedBlogPost post={post} />)
@@ -23,3 +25,11 @@ const blogPosts = await getCollection('blog');
     </div>
 </section>
 </MainLayout>
+
+<style>
+    @reference '@styles/global.css';
+  a {
+    @apply hover:underline text-blue-500;
+  }
+
+</style>

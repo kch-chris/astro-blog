@@ -20,7 +20,7 @@ const frontmatter = post.data;
         height={500}
         quality="low"
         loading="lazy"
-        />
+        transition:name={`${post.slug}-image`}/>
 
     <div class="flex flex-col justify-between py-6 lg:mx-6">
         <a href={`/posts/${post.slug}`} class="text-xl font-semibold text-gray-800 hover:underline dark:text-white ">
