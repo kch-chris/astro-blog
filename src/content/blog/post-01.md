@@ -7,10 +7,9 @@ author: jane-doe
 image: 'images/post-01.png'
 tags: [JavaScript, ES6, Programming]
 
-layout: ../../layouts/BlogLayout.astro
 ---
 
-# { frontmatter.title }
+# Explorando Funciones de ES6
 
 {/*<!-- Mostrar imagen -->*/}
 
